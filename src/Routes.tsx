@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/stack";
 import React from "react";
 
+import Login from "./components/Login";
 import Home from "./components/Home";
 import ProductDetails from "./components/ProductDetails";
 
@@ -14,6 +15,7 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        <RootStack.Screen name="Login" component={Login} />
         <RootStack.Screen name="Home" component={Home} />
         <RootStack.Screen
           name="ProductDetails"

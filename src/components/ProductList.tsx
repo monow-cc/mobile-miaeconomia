@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { CartContext } from "../contexts/CartContext";
+import * as SecureStore from "expo-secure-store";
 
 const products = [
   {
@@ -65,6 +66,15 @@ export default function ProductList() {
   const addToCart = (product: any) => {
     addItem({ id: product.id, name: product.name });
   };
+
+  async function getToken() {
+    const token = await SecureStore.getItemAsync("authToken");
+    console.log(token);
+  }
+
+  useEffect(() => {
+    getToken();
+  }, []);
 
   return (
     <FlatList
