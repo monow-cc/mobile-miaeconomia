@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,28 +10,8 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { CartContext } from "../contexts/CartContext";
-import * as SecureStore from "expo-secure-store";
 
-const products = [
-  {
-    id: 1,
-    name: "Bolacha recheada Bono",
-    barcode: "789123456789",
-    image: require("../assets/Bono.png"),
-  },
-  {
-    id: 2,
-    name: "Produto 2",
-    barcode: "789123456790",
-    image: require("../assets/Bono.png"),
-  },
-  {
-    id: 3,
-    name: "Produto 3",
-    barcode: "789123456791",
-    image: require("../assets/Bono.png"),
-  },
-];
+const products: any[] = [];
 
 const ProductListItem = ({ product, onAddToCart }: any) => {
   const navigation = useNavigation<any>();
@@ -66,15 +46,6 @@ export default function ProductList() {
   const addToCart = (product: any) => {
     addItem({ id: product.id, name: product.name });
   };
-
-  async function getToken() {
-    const token = await SecureStore.getItemAsync("authToken");
-    console.log(token);
-  }
-
-  useEffect(() => {
-    getToken();
-  }, []);
 
   return (
     <FlatList
